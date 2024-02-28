@@ -19,3 +19,17 @@ void addHead(Node*& head,int val){
 
     head = New;
 }
+
+void addTails(Node*& head, int val){
+    Node* New = new Node(val);
+    if(head == NULL){
+        head=New;
+        return;
+    }
+    Node* cur = head;
+    while(cur->next!=NULL){
+        cur=cur->next;
+    }
+    cur->next=New;
+    New->prev=cur;
+}
