@@ -46,3 +46,30 @@ Node* moveLastToFront(){
 
     return Head;
 }
+int main() {
+    // Tạo danh sách liên kết đơn
+    Head = new Node(1);
+    Head->next = new Node(2);
+    Head->next->next = new Node(3);
+    Head->next->next->next = new Node(4);
+
+    // In danh sách trước khi di chuyển nút cuối cùng
+    cout << "Danh sach truoc khi di chuyen: ";
+    printList();
+
+    // Di chuyển nút cuối cùng lên phía trước
+    Head = moveLastToFront();
+
+    // In danh sách sau khi di chuyển
+    cout << "Danh sach sau khi di chuyen: ";
+    printList();
+
+    // Giải phóng bộ nhớ
+    while (Head != NULL) {
+        Node* temp = Head;
+        Head = Head->next;
+        delete temp;
+    }
+
+    return 0;
+}

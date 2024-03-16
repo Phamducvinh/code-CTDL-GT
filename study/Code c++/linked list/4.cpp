@@ -40,27 +40,28 @@ void printList(){
     }
     cout << endl;
 }
-Node* deleteMAfterN(int M, int N){
-    if(head==NULL || N <= 0 || M < 0){
-        return head;
-    }
-    Node* cur = head;
-    Node* temp = NULL;
+// Node* deleteMAfterN(int M, int N){
+//     if(head==NULL || N <= 0 || M < 0){
+//         return head;
+//     }
+//     Node* cur = head;
+//     Node* temp = NULL;
 
-    for(int i=0;i<M-1 && cur != NULL;i++){
-        cur=cur->next;
-    }
+//     for(int i=0;i<M-1 && cur != NULL;i++){
+//         cur=cur->next;
+//     }
 
-    if(cur == NULL)
-        return head;
+//     if(cur == NULL)
+//         return head;
 
-    for(int i=0;i<N && cur!=NULL && cur->next!=NULL;i++){
-        temp = cur->next;
-        cur->next = temp->next;
-        delete temp;
-    }
-    return head;
-}
+//     for(int i=0;i<N && cur!=NULL && cur->next!=NULL;i++){
+//         temp = cur->next;
+//         cur->next = temp->next;
+//         delete temp;
+//     }
+    
+//     return head;
+// }
 
 void linkdelete(int M, int N)
 {
@@ -82,5 +83,32 @@ void linkdelete(int M, int N)
         delete temp;
     }
     temp=cur->next;
-    linkdelete(temp,M,N);
+    //linkdelete(temp,M,N);
+}
+int main() {
+    // Example usage
+    // Creating a linked list: 1->2->3->4->5->6->7->8->9->10
+    for (int i = 1; i <= 10; i++) {
+        Node* newNode = new Node(i);
+        if (!head) {
+            head = newNode;
+        } else {
+            Node* temp = head;
+            while (temp->next) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+    }
+
+    cout << "Original linked list: ";
+    printList();
+
+    int M = 2, N = 2;
+    linkdelete(M, N);
+
+    cout << "Linked list after deleteMAfterN(" << M << ", " << N << "): ";
+    printList();
+
+    return 0;
 }
